@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Укажите версию JavaScript, которую хотите получить
+    "module": "commonjs", // Используйте модульную систему CommonJS
+    "esModuleInterop": true, // Включите поддержку ES модулей
+    "skipLibCheck": true, // Пропустить проверку типов библиотек
+    "forceConsistentCasingInFileNames": true, // Проверка имен файлов
+    "rootDir": "./src", // Укажите корневой каталог исходных файлов
+    "resolveJsonModule": true, // Разрешить импорт JSON модулей
+    "jsx": "react"
+  },
+  "include": ["src/*"], // Укажите включаемые файлы
+  "exclude": ["node_modules", "dist"] // Укажите исключаемые файлы
+}
