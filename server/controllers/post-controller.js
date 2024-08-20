@@ -38,7 +38,7 @@ class PostController {
       if (!post) {
         return res.json('Такого поста нет');
       }
-      return res.json('Пост успешно удален');
+      return res.json({message:'Пост успешно удален'});
     } catch (e) {
       next(e);
     }

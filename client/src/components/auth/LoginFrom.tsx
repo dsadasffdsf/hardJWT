@@ -1,7 +1,7 @@
 import React, { FC, useRef, useState } from 'react';
 
 import { fetchLogin } from '../../redux/slices/usersSlice';
-import { useAppDispatch } from '../../hook';
+import { useAppDispatch } from '../../hook/rtkHook';
 
 const LoginForm: FC = () => {
   const loginRef = useRef<HTMLInputElement>(null);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../hook';
+import { useAppDispatch, useAppSelector } from '../../hook/rtkHook';
 import { fetchLogout } from '../../redux/slices/usersSlice';
 
 const LoginAuthorized = () => {

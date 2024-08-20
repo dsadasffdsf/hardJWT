@@ -2,28 +2,45 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Post } from '../../modules/IPost';
 import PostService from '../../services/PostService';
+import { addAlert } from './alertSlice';
 
+interface InitialPost {
+  postsList: Post[];
+  active: number;
+  inactive: number;
+}
+
+
+interface RegistrationResponse {
+  message: string;
+}
 export const addPost = createAsyncThunk<void, Post>(
   'posts/addPost',
-  async ({ title, desc, status, author }, thunkAPI) => {
+  async ({ title, desc, status, author }, { dispatch }) => {
     try {
       const response = await PostService.addPost(title, desc, status, author);
       console.log(response);
-      thunkAPI.dispatch(getPosts());
+      dispatch(getPosts());
     } catch (error) {
+      dispatch(addAlert({ message: 'Не удалось добавить пост', alertType: 'error' }));
       console.log('Error', error);
     }
   },
 );
-export const remPost = createAsyncThunk<void, string>('posts/remPost', async (_id, thunkAPI) => {
-  try {
-    const response = await PostService.remPost(_id);
-    console.log(response);
-    thunkAPI.dispatch(getPosts());
-  } catch (error) {
-    console.log('Error', error);
-  }
-});
+export const remPost = createAsyncThunk<RegistrationResponse, string>(
+  'posts/remPost',
+  async (_id, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await PostService.remPost(_id);
+      console.log(response);
+      dispatch(addAlert({ message: response.data.message, alertType: 'success' }));
+      dispatch(getPosts());
+    } catch (error) {
+      console.log('Error', error);
+      return rejectWithValue(error.response?.data?.message);
+    }
+  },
+);
 
 export const getPosts = createAsyncThunk<Post[], void>('posts/getPosts', async () => {
   try {
@@ -32,6 +49,7 @@ export const getPosts = createAsyncThunk<Post[], void>('posts/getPosts', async (
     return response.data;
   } catch (error) {
     console.log('Error', error);
+    throw error;
   }
 });
 
@@ -48,7 +66,7 @@ export const updatePost = createAsyncThunk<void, string>(
   },
 );
 
-const initialState = {
+const initialState: InitialPost = {
   postsList: [],
   active: 0,
   inactive: 0,
@@ -77,7 +95,6 @@ export const postsSlice = createSlice({
     });
   },
 });
-
 
 export const {} = postsSlice.actions;
 

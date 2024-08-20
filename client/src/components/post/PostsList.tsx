@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import DetalPost from './DetalPost';
 
 import FilterBarPosts from './FilterBarPosts';
-import { useAppSelector } from '../../hook';
+import { useAppSelector } from '../../hook/rtkHook';
 import { Post } from '../../modules/IPost';
 
 const PostsList: FC = () => {
@@ -32,7 +32,7 @@ const PostsList: FC = () => {
   };
 
   return (
-    <section className="w-[1000px]">
+    <section className="w-full">
       <FilterBarPosts setFilterValue={setFilterValue} />
       <ul className="space-y-4 w-full">
         {filterValue === 'all'

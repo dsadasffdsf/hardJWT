@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { remPost, updatePost } from '../../redux/slices/postsSlice';
-import { useAppDispatch } from '../../hook';
+import { useAppDispatch } from '../../hook/rtkHook';
 import { Post } from '../../modules/IPost';
 
 const DetalPost: FC<{ post: Post }> = ({ post }) => {
@@ -14,7 +14,7 @@ const DetalPost: FC<{ post: Post }> = ({ post }) => {
     dispatch(remPost(_id));
   };
   return (
-    <li className="shadow-2xl p-4 bg-white hover:bg-slate-300 relative w-[1000px]">
+    <li className="shadow-2xl p-4 bg-white hover:bg-slate-300 relative w-full post-animation">
       <h1
         className="text-5xl font-bold cursor-pointer text-gray-900 inline-block"
         onClick={() => handleStatusUpdate()}>

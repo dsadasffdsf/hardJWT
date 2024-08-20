@@ -16,7 +16,7 @@ const FilterBarPosts: FC<FilterBarPostsProps> = ({ setFilterValue }) => {
           setActiveBtnFilter(styleTriggerFilter);
         }}>
         <h1
-          className={`text-4xl p-4 ${
+          className={`text-4xl max-xl:text-2xl p-4 max-sm:p-2 max-sm:text-sm ${
             activeBtnFilter === styleTriggerFilter ? 'filter_active' : ''
           }`}>
           {title}

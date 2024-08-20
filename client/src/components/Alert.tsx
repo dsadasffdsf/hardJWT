@@ -1,54 +1,36 @@
-import React, { FC, forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { alertStyles } from '../modules/alertModel/alertStyles';
+import { useDispatch } from 'react-redux';
+import { remAlert } from '../redux/slices/alertSlice';
+import { AlertProps } from '../modules/alertModel/IAlert';
 
-interface AlertPros {
-  message: string;
-  alertType: string;
-}
+const Alert: FC<AlertProps> = ({ message, alertType }) => {
+  const dispatch = useDispatch();
+  const { container, iconPath, label } = alertStyles[alertType];
 
-type Timer = ReturnType<typeof setTimeout>
-
-const Alert: FC<AlertPros> = forwardRef(({ message, alertType }, ref) => {
   const [alertStyle, setAlertStyle] = useState('opacity-0');
-  const timeoutRef = useRef<Timer | null>(null);
 
   const showHandler = () => {
     setAlertStyle('opacity-100 translate-y-4');
-  };
-
-  const startTimer = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    timeoutRef.current = setTimeout(() => {
-      console.log(timeoutRef.current);
+    setTimeout(() => {
       setAlertStyle('opacity-0');
+      setTimeout(() => {
+        dispatch(remAlert());
+      }, 2000);
     }, 4000);
   };
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  };
-  const handleMouseLeave = () => {
-    startTimer();
-  };
+  useEffect(() => {
+    showHandler();
+  }, []);
 
-  useImperativeHandle(ref, () => ({
-    showHandler,
-  }));
-  console.log(alertStyles[alertType]);
-  const { container, iconPath, label } = alertStyles[alertType];
   return (
     <>
-      <div className="absolute right-1/2 left-1/2 top-[30px] w-max translate-x-[-50%] select-none">
+      <div className="absolute w-max translate-x-[-50%] select-none ">
         <div className={`${alertStyle} alertAnimation`}>
           <div
-            className={`flex items-center p-4 mb-4 text-sm ${container}`}
-            role="alert"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}>
+            className={`flex items-center p-4 bg-slate-50 mb-4 text-sm ${container}`}
+            role="alert">
             <svg
               className="flex-shrink-0 inline w-4 h-4 me-3"
               aria-hidden="true"
@@ -66,6 +48,6 @@ const Alert: FC<AlertPros> = forwardRef(({ message, alertType }, ref) => {
       </div>
     </>
   );
-});
+};
 
 export default Alert;

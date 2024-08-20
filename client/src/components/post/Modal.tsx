@@ -1,7 +1,7 @@
 import React, { FC, useRef, useState } from 'react';
 
 import { addPost, getPosts } from '../../redux/slices/postsSlice';
-import { useAppDispatch, useAppSelector } from '../../hook';
+import { useAppDispatch, useAppSelector } from '../../hook/rtkHook';
 
 interface ModalProps {
   modalTrigger: boolean;
