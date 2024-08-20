@@ -1,5 +1,6 @@
 # server
 npm i 
+
 npm run dev
 # client
 npm install --force
