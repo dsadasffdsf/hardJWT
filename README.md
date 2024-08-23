@@ -10,4 +10,4 @@ npm run dev
 
 как бд используется mongodb cloud
 
-(MailService не был до конца настроен)
+(MailService не работает )
