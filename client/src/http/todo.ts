@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { AuthResponse } from '../modules/response/AuthResponse';
 
-export const API_URL = `http://localhost:8080/api`;
+export const API_URL = `https://versel-todo-jwt-server.vercel.app/api`;
 
 const $api = axios.create({
   withCredentials: true,
