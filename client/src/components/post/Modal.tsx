@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../hook/rtkHook';
 
 interface ModalProps {
   modalTrigger: boolean;
-  setModalTrigger: (value: boolean) => void;
+  setModalTrigger: (value: boolean) => void; 
 }
 
 const Modal: FC<ModalProps> = ({ modalTrigger, setModalTrigger }) => {

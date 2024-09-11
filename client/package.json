@@ -1,4 +1,5 @@
 {
+  "homepage": "https://dsadasffdsf.github.io/todoJWT",
   "name": "sample",
   "version": "0.1.0",
   "private": true,
@@ -8,6 +9,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.7",
+    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
@@ -18,6 +20,8 @@
   },
   "scripts": {
     "dev": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "tailwind": "npx tailwindcss -i ./src/styles/input.css -o ./src/styles/style.css --watch",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -43,6 +47,6 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.4.5"
+    "typescript": "4.4"
   }
 }

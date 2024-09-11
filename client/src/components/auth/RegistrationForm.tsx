@@ -10,6 +10,8 @@ const RegistrationForm: FC = () => {
   const [passwordError, setPasswordError] = useState('');
   const dispatch = useAppDispatch();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log('fdsfsdf');
+
     event.preventDefault();
     let validateForm = true;
     const emailValue = loginRef.current.value;
@@ -30,6 +32,7 @@ const RegistrationForm: FC = () => {
       setEmailError('');
       console.log('Все верно');
     }
+    console.log(emailValue);
 
     if (!passwordValue) {
       validateForm = false;
@@ -42,7 +45,7 @@ const RegistrationForm: FC = () => {
 
         setPasswordError('Пароль должен содержать минимум 4 символа');
       } else if (!/(?=.*\d)/.test(passwordValue)) {
-        validateForm = false
+        validateForm = false;
         setPasswordError('Пароль должен содержать хотя бы одну цифру');
       } else {
         setPasswordError('');

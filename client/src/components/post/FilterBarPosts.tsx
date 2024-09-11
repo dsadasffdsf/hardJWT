@@ -1,15 +1,15 @@
 import React, { FC, useState } from 'react';
 
 interface FilterBarPostsProps {
-  setFilterValue: (value: string) => void; 
+  setFilterValue: (value: string) => void;
 }
 
 const FilterBarPosts: FC<FilterBarPostsProps> = ({ setFilterValue }) => {
   const [activeBtnFilter, setActiveBtnFilter] = useState('all');
 
-  const createFilterElem = (title:string, styleTriggerFilter:string) => {
+  const createFilterElem = (title: string, styleTriggerFilter: string) => {
     return (
-      <li
+      <li 
         className="filter__elem"
         onClick={() => {
           setFilterValue(styleTriggerFilter);

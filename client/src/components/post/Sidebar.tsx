@@ -31,7 +31,7 @@ const Sidebar: FC = () => {
     };
     dispatch(addPost(post));
   };
-  return (
+  return ( 
     <>
       <aside className="top-[15px] left-0 p-4 sticky shadow-2xl w-full">
         <div className="flex justify-center mb-4 space-x-6">
